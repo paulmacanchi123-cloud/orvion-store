@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azuronix Tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;margin:0;background:#f4f7ff;color:#111}
+
+header{background:#0b3ea8;color:white;padding:16px 28px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:700}
+nav a{color:white;margin-left:18px;text-decoration:none}
+
+.hero{background:linear-gradient(120deg,#2563eb,#1e40af);color:white;padding:70px 20px;text-align:center}
+.hero h1{margin:0;font-size:40px}
+
+.section-title{text-align:center;font-size:30px;margin-top:40px}
+
+.container{padding:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:25px}
+
+.card{background:white;border-radius:14px;padding:18px;box-shadow:0 8px 20px rgba(0,0,0,0.1);transition:.25s}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;border-radius:10px}
+.title{font-weight:600;margin-top:10px}
+.price{font-size:22px;font-weight:700;margin:8px 0}
+.features{font-size:14px;color:#555;margin-bottom:12px}
+
+button{cursor:pointer}
+
+.btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+font-weight:600
+}
+
+.cart{
+position:fixed;
+top:20px;
+right:20px;
+background:white;
+padding:12px 16px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+z-index:1000
+}
+
+.cart-items{margin-top:10px;font-size:14px}
+
+.reviews{padding:40px}
+.review{background:white;padding:18px;border-radius:10px;margin-bottom:15px;box-shadow:0 4px 10px rgba(0,0,0,0.08)}
+.stars{color:#f5b301}
+
+.review-form{background:white;padding:20px;border-radius:10px;max-width:500px;margin:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+
+input,textarea,select{width:100%;padding:10px;margin-top:8px;border-radius:6px;border:1px solid #ccc}
+
+.policy{padding:40px;background:#eef2ff;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.box{background:white;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.08)}
+
+.track{padding:40px}
+.track-box{max-width:400px;margin:auto;background:white;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:14px 16px;
+border-radius:50%;
+font-size:22px;
+text-decoration:none;
+box-shadow:0 6px 15px rgba(0,0,0,0.3)
+}
+
+footer{background:#0b3ea8;color:white;padding:25px;text-align:center;margin-top:40px}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Azuronix Tech</div>
+<nav>
+<a href="#productos">Productos</a>
+<a href="#reseñas">Reseñas</a>
+<a href="#seguimiento">Seguimiento</a>
+</nav>
+</header>
+
+<div class="cart">
+<strong>🛒 Carrito</strong>
+<div id="cart-items" class="cart-items">0 productos</div>
+</div>
+
+<section class="hero">
+<h1>Tecnología y Audio para Todo Ecuador</h1>
+<p>Audífonos • Gadgets • Envíos nacionales</p>
+</section>
+
+<h2 class="section-title" id="productos">Productos</h2>
+
+<section class="container">
+
+<div class="card">
+<img src="IMAGEN_AQUI.jpg">
+<div class="title">Audífonos Bluetooth</div>
+<div class="price">$10</div>
+<div class="features">Bluetooth • Micrófono • 6h batería</div>
+<button class="btn" onclick="addToCart('Audífonos Bluetooth')">Agregar</button>
+</div>
+
+<div class="card">
+<img src="IMAGEN_AQUI.jpg">
+<div class="title">Audífonos Gamer RGB</div>
+<div class="price">$18</div>
+<div class="features">Sonido envolvente • Micrófono</div>
+<button class="btn" onclick="addToCart('Audífonos Gamer RGB')">Agregar</button>
+</div>
+
+<div class="card">
+<img src="IMAGEN_AQUI.jpg">
+<div class="title">Audífonos Pro Bass</div>
+<div class="price">$15</div>
+<div class="features">Extra Bass • Control táctil</div>
+<button class="btn" onclick="addToCart('Audífonos Pro Bass')">Agregar</button>
+</div>
+
+</section>
+
+<h2 class="section-title" id="reseñas">Reseñas</h2>
+
+<section class="reviews" id="reviews"></section>
+
+<div class="review-form">
+<h3>Dejar reseña</h3>
+<input id="name" placeholder="Nombre">
+<select id="rating">
+<option value="5">★★★★★</option>
+<option value="4">★★★★</option>
+<option value="3">★★★</option>
+<option value="2">★★</option>
+<option value="1">★</option>
+</select>
+<textarea id="comment" placeholder="Tu opinión"></textarea>
+<button class="btn" onclick="addReview()">Publicar</button>
+</div>
+
+<h2 class="section-title" id="seguimiento">Seguimiento de Pedido</h2>
+
+<section class="track">
+<div class="track-box">
+<input id="order" placeholder="Número de pedido">
+<button class="btn" onclick="trackOrder()">Buscar</button>
+<p id="track-result"></p>
+</div>
+</section>
+
+<section class="policy">
+
+<div class="box">
+<h3>Garantía</h3>
+<p>Garantía por defectos de fábrica.</p>
+</div>
+
+<div class="box">
+<h3>Devoluciones</h3>
+<p>Cambios dentro de 3 días si el producto falla.</p>
+</div>
+
+<div class="box">
+<h3>Envíos</h3>
+<p>Envíos nacionales por Servientrega.</p>
+</div>
+
+</section>
+
+<a class="whatsapp" href="https://wa.me/593000000000">💬</a>
+
+<footer>
+<p>© 2026 Azuronix Tech • Tecnología en Ecuador</p>
+</footer>
+
+<script>
+let cart=[]
+
+function addToCart(product){
+cart.push(product)
+document.getElementById("cart-items").innerText=cart.length+" productos"
+}
+
+function addReview(){
+let name=document.getElementById("name").value
+let rating=document.getElementById("rating").value
+let comment=document.getElementById("comment").value
+
+let review=document.createElement("div")
+review.className="review"
+review.innerHTML="<strong>"+name+"</strong><div class='stars'>"+"★".repeat(rating)+"</div><p>"+comment+"</p>"
+
+document.getElementById("reviews").prepend(review)
+}
+
+function trackOrder(){
+let order=document.getElementById("order").value
+let result=document.getElementById("track-result")
+
+if(order==""){
+result.innerText="Ingresa un número de pedido"
+}else{
+result.innerText="Pedido en camino 🚚"
+}
+}
+</script>
+
+</body>
+</html>
